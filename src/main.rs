@@ -6,6 +6,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?
         .json::<HashMap<String, String>>()
         .await?;
-    println!("{:#?}", resp);
+
+    println!("{:#?}", resp.get("origin"));
     Ok(())
 }
