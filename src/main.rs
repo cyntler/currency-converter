@@ -1,12 +1,10 @@
-use std::collections::HashMap;
+mod api;
+use crate::api::fetch;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let resp = reqwest::get("https://httpbin.org/ip")
-        .await?
-        .json::<HashMap<String, String>>()
-        .await?;
+    let resp = fetch().await?;
 
-    println!("{:#?}", resp.get("origin"));
+    println!("{:#?}", resp);
     Ok(())
 }
